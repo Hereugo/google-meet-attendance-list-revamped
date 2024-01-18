@@ -30,10 +30,16 @@
       {
         "matches": ["https://meet.google.com/**-**-**"],
         "js": [
+          "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
           "js/utils.js",
+          "js/components/Modal.js",
+          "js/components/ListView.js",
+          "js/templates.js",
           "js/content_script.js"
         ],
-        "css": []
+        "css": [
+          "css/index.css"
+        ]
       }
     ]
   }

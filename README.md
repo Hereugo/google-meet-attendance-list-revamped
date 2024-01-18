@@ -12,6 +12,7 @@ This is a revamped version of Google Meet Attendance List. A Google Chrome exten
 
 - [x] Figure out how to get the list of people present in a Google Meet call.
 - [ ] Maintain different states across different Google Meet calls.
+- [x] Implement Modal Popup Functionality
 - **User Interface**
   - [ ] Modal popup, where user can create classes.
     - [ ] User can inject all present people in a Google Meet call to a class.
