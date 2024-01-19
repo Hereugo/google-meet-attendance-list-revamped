@@ -1,0 +1,50 @@
+#gmal__app h1 {
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+
+#gmal__app h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+#gmal__app h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+#gmal__app h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+#gmal__app h5 {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+#gmal__app h6 {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+#gmal__app p {
+    margin: 0;
+    padding: 0;
+}
+
+#gmal__app .footnote {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+#gmal__app hr {
+    border-style: none;
+    border-top: 1px solid var(--separator);
+}
+
+#gmal__app a,
+#gmal__app button {
+    all: unset;
+    cursor: pointer;
+}

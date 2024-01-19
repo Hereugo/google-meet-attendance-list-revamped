@@ -8,12 +8,20 @@ class ListView extends Modal {
 
         // TODO Fill in the popup content
         // document.getElementById("popup__content");
+        // chrome.storage.sync.get(["classes"]).then((result) => {
+        //     let participants = JSON.parse(sessionStorage.getItem("participants"));
+        //     let classes = result.classes;
+            
+        //     let html = ``;
 
-        console.log("Open list view");
+        //     // modify html and append to popup__content
+        //     document.getElementById("popup__content").insertAdjacentHTML("beforeend", html);
+        // });
+        // console.log("Open list view: ", participants);
     }
 
     connectedCallback() {
-        const btn = Utils.createElement("button", null, "List View");
+        const btn = Utils.createElement("button", null, null, "List View");
         this.appendChild(btn);
 
         btn.addEventListener("click", (e) => {

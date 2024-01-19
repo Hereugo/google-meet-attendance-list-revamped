@@ -19,6 +19,19 @@ function initialize() {
     });
 
     setupDOM();
+
+    if (Utils.storageAvailable("sessionStorage")) {
+        populateStorage();
+    } else {
+        alert("Session storage is not available");
+        // TODO Figure out another way to handle storage
+    }
+}
+
+function populateStorage() {
+    sessionStorage.setItem("participants", []);
+
+    
 }
 
 window.addEventListener("message", (event) => {
@@ -29,6 +42,11 @@ window.addEventListener("message", (event) => {
     switch(event.data.sender) {
         case "inject-message": {
             console.log(event.data.participants);
+
+            sessionStorage.setItem(
+                "participants",
+                JSON.stringify(event.data.participants)
+            );
         }
     }
 });

@@ -1,23 +1,68 @@
+:root {
+    --background-modal: #fff;
+    --transparent-hover: rgba(0, 16, 61, 0.04);
+    --transparent-active: rgba(0, 16, 61, 0.08);
+    --separator: rgba(0, 16, 61, 0.12);
+    --shadow: rgba(0, 16, 61, 0.16);
+    --shadow24: rgba(0, 16, 61, 0.24);
+    --border: rgba(0, 16, 61, 0.12);
+
+    --header-text: #2c2d2e;
+    --text-primary: #2c2d2e;
+    --text-secondary: #87898f;
+    --text-link: #005bd1;
+
+    --icon-primary: #2c2d2e;
+    --icon-secondary: #a5a7ad;
+    --icon-accent: #005ff9;
+}
+
 #gmal__app {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    font-family: "Arial", sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
 }
 
 #modal__background {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 2;
-    top: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     left: 0;
-    background-color: green;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: var(--shadow);
+    z-index: 10;
 }
 
 #popup {
-    width: 300px;
-    height: 300px;
-    background-color: white;
+    position: absolute;
+    padding: 8px 0;
+    background: var(--background-modal);
+    box-shadow: 0px 4px 32px var(--shadow);
+    border-radius: 12px;
+    z-index: 1;
+}
+
+#popup__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    height: 48px;
+    border-bottom: 1px solid var(--separator);
+}
+
+/* TODO: Popup close button should be a circle. */
+
+#popup__close:hover {
+    background: var(--transparent-hover);
+}
+
+#popup__close:active {
+    background: var(--transparent-active);
 }
