@@ -47,17 +47,43 @@
 }
 
 .gmal__list_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gmal__list_item > gmal-detail {
+    width: 100%;
     padding: 0 8px;
     height: 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    border-bottom: 1px solid var(--separator);
+    border-radius: 12px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
 }
 
-.gmal__list_item:last-child {
-    border-bottom: none;
+.gmal__list_item::after {
+    content: "";
+    display: block;
+    width: 95%;
+    height: 1px;
+    background-color: var(--separator);
+}
+
+.gmal__list_item:last-child::after {
+    display: none;
+}
+
+.gmal__list_item > gmal-detail:hover {
+    background-color: var(--transparent-hover);
+}
+
+.gmal__list_item > gmal-detail:active {
+    background-color: var(--transparent-active);
 }
 
 .gmal__list_item_details {
@@ -79,7 +105,7 @@
     border-radius: 50%;
     margin: -8px; /* allows the profile images to overlap */
     border: 2px solid var(--background-modal);
-    /* box-sizing: border-box; */
+    box-sizing: content-box !important;
 }
 
 .gmal__list_item_profile_more {
@@ -117,4 +143,8 @@
 
 .gmal__list_item_action:active {
     background-color: var(--transparent-active);
+}
+
+.gmal__list_item > gmal-detail:hover:has(.gmal__list_item_action:hover) {
+    background-color: initial;
 }

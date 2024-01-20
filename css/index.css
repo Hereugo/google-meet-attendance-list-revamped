@@ -26,6 +26,10 @@
     padding: 0;
 }
 
+#gmal__app * {
+    box-sizing: border-box;
+}
+
 #modal__background {
     position: fixed;
     display: flex;

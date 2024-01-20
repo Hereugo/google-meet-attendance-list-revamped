@@ -38,7 +38,10 @@
         "js/content_script.js"
       ],
       "css": [
-        "css/index.css"
+        "third-party/fontawesome/pro.min.css",
+        "css/index.css",
+        "css/list.css",
+        "css/box.css"
       ]
     }
   ]
