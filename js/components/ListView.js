@@ -18,7 +18,7 @@ class ListView extends Modal {
                         <div class="gmal__list_search">
                             <input type="text" placeholder="Search for a class" />
                         </div>
-                        <ul class="gmal__list_content">
+                        <ul id="gmal__list_content">
                         </ul>
                     </div>
                 </div>
@@ -33,38 +33,91 @@ class ListView extends Modal {
         // TODO Fill in the popup content
         chrome.storage.sync.get(["classes"]).then((result) => {
             let participants = JSON.parse(sessionStorage.getItem("participants"));
-            let classes = result.classes;
-            
-            let listItem = `
-            <li class="gmal__list_item">
-                <gmal-detail>
-                    <span class="gmal__list_item_title">Physics</span>
-                    <div class="gmal__list_item_details">
-                        <div class="gmal__list_item_profiles">
-                            <img src="https://picsum.photos/32/32" alt="random image" />
-                            <img src="https://picsum.photos/32/32" alt="random image" />
-                            <div class="gmal__list_item_profile_more">
-                                <span>+3</span>
-                            </div>
-                        </div>
-                        <span class="footnote">5 out of 10 present</span>
-                    </div>
-                    <div class="gmal__list_item_actions">
-                        <button class="gmal__list_item_action">
-                            <i class="far fa-edit"></i>
-                        </button>
-                        <button class="gmal__list_item_action">
-                            <i class="far fa-trash"></i>
-                        </button>
-                    </div>
-                </gmal-detail>
-            </li>
-            `;
+            // let classes = result.classes;
 
-            // modify html and append to popup__content
-            document.getElementById("gmal__list_content").insertAdjacentHTML("beforeend", html);
+            let classes = [
+                {
+                    name: "Physics",
+                    students: [
+                        "Amir Nurmukhambetov",
+                        "Abraham Lincoln",
+                        "Abraham Lincoln",
+                    ],
+                },
+                {
+                    name: "Chemistry",
+                    students: [
+                        "Amir Nurmukhambetov",
+                        "Abraham Lincoln",
+                    ]
+                },
+                {
+                    name: "Biology",
+                    students: []
+                }
+            ];
+
+            for (let i = 0; i < classes.length; i++) {
+                const item = Utils.addChild(
+                    document.getElementById("gmal__list_content"),
+                    "li",
+                    null,
+                    "gmal__list_item",
+                );
+    
+                const link = Utils.addChild(item, "gmal-detail");
+    
+                Utils.addChild(link, "span", null, "gmal__list_item_title", classes[i].name);
+
+                const classDetails = Utils.addChild(link, "div", null, "gmal__list_item_details");
+    
+                const classProfiles = Utils.addChild(classDetails, "div", null, "gmal__list_item_profiles");
+
+                const present = participants.filter((participant) => {
+                    return classes[i].students.includes(participant.name); // TODO: make lower case and remove spaces from names, and then compare
+                });
+        
+                if (present.length <= 3) {
+                    for (let j = 0; j < present.length; j++) {
+                        Utils.addChild(
+                            classProfiles,
+                            "img",
+                            null, null, null,
+                            {src: present[j].avatar, alt: present[j].name}
+                        );
+                    }
+                } else {
+                    for (let j = 0; j < 2; j++) {
+                        Utils.addChild(
+                            classProfiles,
+                            "img",
+                            null, null, null,
+                            {src: present[j].avatar, alt: present[j].name}
+                        );
+                    }
+    
+                    const classProfileMore = Utils.addChild(classProfiles, "div", null, "gmal__list_item_profile_more");
+                    Utils.addChild(classProfileMore, "span", null, null, `+${present.length - 2}`);
+                }
+                Utils.addChild(classDetails, "span", null, "footnote", `${present.length} out of ${classes[i].students.length} present`);
+
+                const classActions = Utils.addChild(link, "div", null, "gmal__list_item_actions");
+                
+                const editButton = Utils.addChild(classActions, "button", null, "gmal__list_item_action", null, {type: "button"});
+                Utils.addChild(editButton, "i", null, "far fa-edit");
+
+                editButton.addEventListener("click", (e) => {
+                    console.log("Edit class: ", classes[i]);
+                });
+
+                const deleteButton = Utils.addChild(classActions, "button", null, "gmal__list_item_action", null, {type: "button"});
+                Utils.addChild(deleteButton, "i", null, "far fa-trash");
+
+                deleteButton.addEventListener("click", (e) => {
+                    console.log("Delete class: ", classes[i]);
+                });
+            }
         });
-        console.log("Open list view: ", participants);
     }
 
     connectedCallback() {

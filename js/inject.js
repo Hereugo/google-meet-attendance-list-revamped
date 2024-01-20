@@ -56,7 +56,7 @@
                 .filter((p) => p[7] && p[32] && p[33])
                 .map((p) => { return {
                     'id': p[0],
-                    'profile_url': p[1] || '',
+                    'avatar': p[1] || '',
                     'name': p[28] || 'John Doe',
                 }});
 

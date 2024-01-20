@@ -55,6 +55,20 @@ class Utils {
         return el;
     }
 
+    static addChild(
+        parent,
+        tag,
+        id = null,
+        className = null,
+        textContent = null,
+        attrs = null,
+        props = null,
+    ) {
+        const el = Utils.createElement(tag, id, className, textContent, attrs, props);
+        parent.appendChild(el);
+        return el;
+    }
+
     static onReady(targetParent = '', target = '', callback = ()=>{}, options = {}) {
         new MutationObserver((mutations, me) => {
             if (document.querySelector(target)) {
