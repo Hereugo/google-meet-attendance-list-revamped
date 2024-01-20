@@ -3,6 +3,21 @@ class ListView extends Modal {
         super("gmal__list");
     }
 
+    injectTemplate() {
+        document.body.insertAdjacentHTML('beforebegin', `
+        <template id="gmal__list">
+            <div id="modal__background">
+                <div id="popup">
+                    <button id="popup__close"><svg-icon name="close-big"></svg-icon></button>
+                    <div id="popup__content">
+                        <p>List view</p>
+                    </div>
+                </div>
+            </div>
+        </template>
+        `);   
+    }
+
     open() {
         super.open();
 
@@ -21,6 +36,8 @@ class ListView extends Modal {
     }
 
     connectedCallback() {
+        // this.injectTemplate();
+
         const btn = Utils.createElement("button", null, null, "List View");
         this.appendChild(btn);
 

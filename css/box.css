@@ -43,8 +43,7 @@
     border-top: 1px solid var(--separator);
 }
 
-#gmal__app a,
-#gmal__app button {
+#gmal__app a {
     all: unset;
     cursor: pointer;
 }

@@ -57,7 +57,22 @@
     border-bottom: 1px solid var(--separator);
 }
 
-/* TODO: Popup close button should be a circle. */
+#popup__content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#popup__close {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 100ms ease-in-out;
+}
 
 #popup__close:hover {
     background: var(--transparent-hover);
