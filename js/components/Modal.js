@@ -14,12 +14,12 @@ class Modal extends HTMLElement {
         this.parent.removeChild(this.modal);
     }
 
-    open() {
+    open(popupTitle) {
         this.isOpen = true;
 
         const template = document.getElementById(this.templateId);
         this.parent.appendChild(template.content.cloneNode(true));
-        this.modal = document.getElementById("modal__background");
+        this.modal = document.getElementById(this.templateId + "_modal");
 
         this.modal.addEventListener("click", (e) => {
             if (this.isOpen && !e.dontCloseModal) this.close();
@@ -28,6 +28,10 @@ class Modal extends HTMLElement {
         document.getElementById("popup").addEventListener("click", (e) => {
             e.dontCloseModal = true;
         });
+
+        if (popupTitle) {
+            document.getElementById("popup__title").innerText = popupTitle;
+        }
 
         document.getElementById("popup__close").addEventListener("click", () => this.close());
     }

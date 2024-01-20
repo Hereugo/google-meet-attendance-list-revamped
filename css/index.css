@@ -30,7 +30,7 @@
     box-sizing: border-box;
 }
 
-#modal__background {
+.modal__background {
     position: fixed;
     display: flex;
     justify-content: center;

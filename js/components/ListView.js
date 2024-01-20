@@ -4,9 +4,10 @@ class ListView extends Modal {
     }
 
     injectTemplate() {
+        // TODO: Add custom html if empty class
         document.body.insertAdjacentHTML('beforebegin', `
         <template id="gmal__list">
-            <div id="modal__background">
+            <div id="gmal__list_modal" class="modal__background">
                 <div id="popup" class="gmal__list_popup">
                     <div id="popup__header">
                         <h2 id="popup__title">Available Classes</h2>
@@ -15,8 +16,10 @@ class ListView extends Modal {
                         </button>
                     </div>
                     <div id="popup__content">
-                        <div class="gmal__list_search">
-                            <input type="text" placeholder="Search for a class" />
+                        <div id="gmal__list_header">
+                            <div id="gmal__list_search">
+                                <input type="text" placeholder="Search for a class" />
+                            </div>
                         </div>
                         <ul id="gmal__list_content">
                         </ul>
@@ -30,7 +33,8 @@ class ListView extends Modal {
     open() {
         super.open();
 
-        // TODO Fill in the popup content
+        // TODO: Search functionality by name
+
         chrome.storage.sync.get(["classes"]).then((result) => {
             let participants = JSON.parse(sessionStorage.getItem("participants"));
             // let classes = result.classes;
@@ -65,8 +69,10 @@ class ListView extends Modal {
                     "gmal__list_item",
                 );
     
-                const link = Utils.addChild(item, "gmal-detail");
+                const link = Utils.addChild(item, "gmal-detail", null, null, null, {"data-index": i});
     
+                link.addEventListener("click", (e) => this.close());
+
                 Utils.addChild(link, "span", null, "gmal__list_item_title", classes[i].name);
 
                 const classDetails = Utils.addChild(link, "div", null, "gmal__list_item_details");
@@ -121,8 +127,11 @@ class ListView extends Modal {
     }
 
     connectedCallback() {
-        this.injectTemplate();
+        if (!document.getElementById("gmal__list")) {
+            this.injectTemplate();
+        }
 
+        // TODO: Instead of regular button, make it look better.
         const btn = Utils.createElement("button", null, null, "List View");
         this.appendChild(btn);
 

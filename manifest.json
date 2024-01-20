@@ -34,6 +34,7 @@
         "js/utils.js",
         "js/components/Modal.js",
         "js/components/ListView.js",
+        "js/components/DetailView.js",
         "js/templates.js",
         "js/content_script.js"
       ],

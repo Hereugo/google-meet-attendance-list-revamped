@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="third-party/fontawesome/pro.min.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/detail.css"/>
+    <link rel="stylesheet" href="css/box.css"/>
+</head>
+<body>
+    <template id="gmal__detail">
+        <div id="gmal__detail_modal" class="modal__background">
+            <div id="popup" class="gmal__detail_popup">
+                <div id="popup__header">
+                    <h2 id="popup__title">Physics</h2>
+                    <button id="popup__close">
+                        <i class="fal fa-lg fa-times"></i>
+                    </button>
+                </div>
+                <div id="popup__content">
+                    <div id="gmal__detail_header">
+                        <div id="gmal__detail_search">
+                            <input type="text" placeholder="Filter by name" />
+                        </div>
+                        <div id="gmal__detail_header_title">
+                            <span>Name</span>
+                            <span>Present</span>
+                            <span>Joined At</span>
+                            <span>
+                                Duration <br/>
+                                <sub>(HH:MM:SS)</sub>
+                            </span>
+                        </div>
+                    </div>
+                    <ul id="gmal__detail_content">
+                        <li class="gmal__detail_item">
+                            <div class="gmal__detail_item_row">
+                                <div class="gmal__detail_item_user">
+                                    <img class="gmal__detail_item_avatar" src="https://picsum.photos/32/32" alt="random image" />
+                                    <span class="gmal__detail_item__name">John Doe</span>
+                                </div>
+                                <i class="fal fa-lg fa-check"></i>
+                                <span>02:00 PM</span>
+                                <span>01:12:34</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div id="gmal__app"></div>
+
+    <image src="https://picsum.photos/200/300" alt="random image" />
+
+    <gmal-detail>
+        <div style="background: brick;">
+            Button
+        </div>
+    </gmal-detail>
+</body>
+<script src="js/utils.js"></script>
+<script src="js/components/Modal.js"></script>
+<script src="js/components/DetailView.js"></script>
+</html>
