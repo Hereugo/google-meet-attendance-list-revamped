@@ -44,7 +44,6 @@
 }
 
 #popup {
-    position: absolute;
     padding: 8px 0;
     background: var(--background-modal);
     box-shadow: 0px 4px 32px var(--shadow);
@@ -62,8 +61,8 @@
 }
 
 #popup__content {
-    max-height: 400px;
-    overflow-y: auto;
+    /* max-height: 400px; */
+    /* overflow-y: auto; */
 }
 
 #popup__close {

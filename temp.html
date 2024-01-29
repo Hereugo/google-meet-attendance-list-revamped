@@ -18,8 +18,8 @@
     </style>
 </head>
 <body>
-    <template id="gmal__list">
-        <div id="modal__background">
+    <!-- <template id="gmal__list">
+        <div id="gmal__list_modal" class="modal__background">
             <div id="popup" class="gmal__list_popup">
                 <div id="popup__header">
                     <h2 id="popup__title">Available Classes</h2>
@@ -31,6 +31,11 @@
                     <div id="gmal__list_header">
                         <div id="gmal__list_search">
                             <input type="text" placeholder="Search for a class" />
+                        </div>
+                        <div id="gmal__list_global_actions">
+                            <button id="gmal__list_add_class">
+                                <i class="fal fa-lg fa-plus"></i>
+                            </button>
                         </div>
                     </div>
                     <ul id="gmal__list_content">
@@ -47,220 +52,25 @@
                                     </div>
                                     <span class="footnote">5 out of 10 present</span>
                                 </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Math</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <!-- <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+3</span>
-                                        </div> -->
-                                    </div>
-                                    <span class="footnote">1 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Chemistry</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+5</span>
-                                        </div>
-                                    </div>
-                                    <span class="footnote">7 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Chemistry</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+5</span>
-                                        </div>
-                                    </div>
-                                    <span class="footnote">7 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Chemistry</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+5</span>
-                                        </div>
-                                    </div>
-                                    <span class="footnote">7 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Chemistry</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+5</span>
-                                        </div>
-                                    </div>
-                                    <span class="footnote">7 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Chemistry</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+5</span>
-                                        </div>
-                                    </div>
-                                    <span class="footnote">7 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Chemistry</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+5</span>
-                                        </div>
-                                    </div>
-                                    <span class="footnote">7 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Chemistry</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+5</span>
-                                        </div>
-                                    </div>
-                                    <span class="footnote">7 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
-                                </div>
-                            </gmal-detail>
-                        </li>
-                        <li class="gmal__list_item">
-                            <gmal-detail>
-                                <span class="gmal__list_item_title">Chemistry</span>
-                                <div class="gmal__list_item_details">
-                                    <div class="gmal__list_item_profiles">
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <img src="https://picsum.photos/32/32" alt="random image" />
-                                        <div class="gmal__list_item_profile_more">
-                                            <span>+5</span>
-                                        </div>
-                                    </div>
-                                    <span class="footnote">7 out of 10 present</span>
-                                </div>
-                                <div class="gmal__list_item_actions">
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <button class="gmal__list_item_action">
-                                        <i class="far fa-trash"></i>
-                                    </button>
+                                <div class="gmal__list_action_popup">
+                                    <label class="gmal__list_action_popup_button">
+                                        <i class="far fa-ellipsis-h"></i> 
+                                        <input type="checkbox" style="display: none;"/>
+                                    </label>
+                                    <ul class="gmal__list_action_popup_content">
+                                        <li class="gmal__list_action_popup_item">
+                                            <gmal-detail>View</gmal-detail>
+                                        </li>
+                                        <li class="gmal__list_action_popup_item">
+                                            <gmal-edit>Edit</gmal-edit>
+                                        </li>
+                                        <li class="gmal__list_action_popup_item">
+                                            <button>Export</button>
+                                        </li>
+                                        <li class="gmal__list_action_popup_item">
+                                            <button>Delete</button>
+                                        </li>
+                                    </ul>
                                 </div>
                             </gmal-detail>
                         </li>
@@ -268,17 +78,38 @@
                 </div>
             </div>
         </div>
-    </template>
+    </template> -->
     <div id="gmal__app"></div>
 
     <image src="https://picsum.photos/200/300" alt="random image" />
 
     <gmal-list></gmal-list>
 </body>
+<script type="javascript">
+    classes = [
+        {
+            name: "Physics",
+            students: [
+                "Amir Nurmukhambetov",
+                "Abraham Lincoln",
+                "Abraham Lincoln",
+            ],
+        },
+        {
+            name: "Chemistry",
+            students: [
+                "Amir Nurmukhambetov",
+                "Abraham Lincoln",
+            ]
+        },
+        {
+            name: "Biology",
+            students: []
+        }
+    ];
+</script>
 <script src="js/utils.js"></script>
 <script src="js/components/Modal.js"></script>
+<script src="js/components/DetailView.js"></script>
 <script src="js/components/ListView.js"></script>
-<script type="javascript">
-
-</script>
 </html>

@@ -20,6 +20,11 @@ class ListView extends Modal {
                             <div id="gmal__list_search">
                                 <input type="text" placeholder="Search for a class" />
                             </div>
+                            <div id="gmal__list_global_actions">
+                                <button id="gmal__list_add_class">
+                                    <i class="fal fa-lg fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
                         <ul id="gmal__list_content">
                         </ul>
@@ -33,33 +38,14 @@ class ListView extends Modal {
     open() {
         super.open();
 
+
+
         // TODO: Search functionality by name
 
-        chrome.storage.sync.get(["classes"]).then((result) => {
-            let participants = JSON.parse(sessionStorage.getItem("participants"));
+        // chrome.storage.sync.get(["classes"]).then((result) => {
+        ((result) => {
+            let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
             // let classes = result.classes;
-
-            let classes = [
-                {
-                    name: "Physics",
-                    students: [
-                        "Amir Nurmukhambetov",
-                        "Abraham Lincoln",
-                        "Abraham Lincoln",
-                    ],
-                },
-                {
-                    name: "Chemistry",
-                    students: [
-                        "Amir Nurmukhambetov",
-                        "Abraham Lincoln",
-                    ]
-                },
-                {
-                    name: "Biology",
-                    students: []
-                }
-            ];
 
             for (let i = 0; i < classes.length; i++) {
                 const item = Utils.addChild(
@@ -107,23 +93,35 @@ class ListView extends Modal {
                 }
                 Utils.addChild(classDetails, "span", null, "footnote", `${present.length} out of ${classes[i].students.length} present`);
 
-                const classActions = Utils.addChild(link, "div", null, "gmal__list_item_actions");
-                
-                const editButton = Utils.addChild(classActions, "button", null, "gmal__list_item_action", null, {type: "button"});
-                Utils.addChild(editButton, "i", null, "far fa-edit");
+                const classActions = Utils.addChild(link, "div", null, "gmal__list_action_popup");
 
-                editButton.addEventListener("click", (e) => {
-                    console.log("Edit class: ", classes[i]);
+                const classActionsButton = Utils.addChild(classActions, "label", null, "gmal__list_action_popup_button");
+                Utils.addChild(classActionsButton, "i", null, "far fa-ellipsis-h");
+                Utils.addChild(classActionsButton, "input", null, null, null, {"type": "checkbox", "style": "display: none;"});
+                classActionsButton.addEventListener("click", (e) => e.stopPropagation()); // Prevents detail view from opening
+
+                const classActionsContent = Utils.addChild(classActions, "ul", null, "gmal__list_action_popup_content");
+
+                const viewButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
+                const viewButton = Utils.addChild(viewButtonItem, "gmal-detail", null, null, "View");
+                viewButton.addEventListener("click", (e) => {
+                    console.log("view", i);
+
                 });
-
-                const deleteButton = Utils.addChild(classActions, "button", null, "gmal__list_item_action", null, {type: "button"});
-                Utils.addChild(deleteButton, "i", null, "far fa-trash");
-
+                
+                const editButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
+                const editButton = Utils.addChild(editButtonItem, "button", null, null, "Edit");
+                editButton.addEventListener("click", (e) => {
+                    console.log("edit", i);
+                });
+                
+                const deleteButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
+                const deleteButton = Utils.addChild(deleteButtonItem, "button", null, null, "Delete");
                 deleteButton.addEventListener("click", (e) => {
-                    console.log("Delete class: ", classes[i]);
+                    console.log("delete", i);
                 });
             }
-        });
+        })();
     }
 
     connectedCallback() {

@@ -45,10 +45,14 @@ class DetailView extends Modal {
     open() {
         // TODO: Filter functionality by name
         
-        chrome.storage.sync.get(["classes"]).then((result) => {
-            let participants = JSON.parse(sessionStorage.getItem("participants"));
-            let classes = result.classes; 
+        // chrome.storage.sync.get(["classes"]).then((result) => {
+        ((result) => {
+            let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
+            // let classes = result.classes;
             
+        
+            console.log(classes[this.classId]);
+
             super.open(classes[this.classId].name);
     
             // TODO: Populate the list with participants of the class by this html template
@@ -64,7 +68,7 @@ class DetailView extends Modal {
                     <span>01:12:34</span>
                 </div>
             </li>`;
-        });
+        })();
     }
 
     connectedCallback() {
@@ -72,7 +76,7 @@ class DetailView extends Modal {
             this.injectTemplate();
         }
 
-        this.classId = this.dataset.classId || null;
+        this.classId = this.dataset.index || null;
 
         this.addEventListener("click", (e) => {
             if (this.isOpen) {

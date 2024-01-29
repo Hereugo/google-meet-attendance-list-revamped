@@ -18,4 +18,10 @@ This is a revamped version of Google Meet Attendance List. A Google Chrome exten
   - [ ] Modal popup, where user can create classes.
     - [ ] User can inject all present people in a Google Meet call to a class.
   - [x] Modal popup, where user can select a class and see the list of people present in that class.
-  
+
+
+
+## Left off:
+I refactored some files so that they works locally with `temp.html`. Make sure that 
+classes variable is global, so that `ListView` and `DetailView` have access to it.
+

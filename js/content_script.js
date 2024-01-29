@@ -5,6 +5,8 @@
         ".c8mVDd",
         initialize,
     );
+
+    console.log("Hello");
 })();
 
 function initialize() {

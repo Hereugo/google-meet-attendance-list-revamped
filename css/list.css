@@ -5,8 +5,9 @@
 #gmal__list_header {
     padding: 8px 24px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
     position: sticky;
     top: 0;
     background-color: var(--background-modal);
@@ -37,6 +38,27 @@
 
 #gmal__list_search > input::placeholder {
     color: var(--text-secondary);
+}
+
+#gmal__list_add_class {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 100ms ease-in-out; 
+}
+
+#gmal__list_add_class:hover {
+    background-color: var(--transparent-hover);
+}
+
+#gmal__list_add_class:active {
+    background-color: var(--transparent-active);
 }
 
 #gmal__list_content {
@@ -86,7 +108,7 @@
     background-color: var(--transparent-hover);
 }
 
-.gmal__list_item > gmal-detail:active {
+.gmal__list_item > gmal-detail:active { 
     background-color: var(--transparent-active);
 }
 
@@ -129,13 +151,17 @@
     color: var(--text-primary);
 }
 
-.gmal__list_item_actions {
+.gmal__list_action_popup {
+    position: relative;
+}
+
+#gmal__list_global_actions {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.gmal__list_item_action {
+.gmal__list_action_popup_button {
     all: unset;
     cursor: pointer;
     display: flex;
@@ -143,18 +169,63 @@
     align-items: center;
     height: 32px;
     width: 32px;
-    border-radius: 50%;
+    border-radius: 8px;
     transition: all 100ms ease-in-out;
 }
 
-.gmal__list_item_action:hover {
+.gmal__list_action_popup_button:hover {
     background-color: var(--transparent-hover);
 }
 
-.gmal__list_item_action:active {
+.gmal__list_action_popup_button:has(input[type="checkbox"]:checked) {
+    background-color: var(--transparent-active);
+
+    + .gmal__list_action_popup_content {
+        visibility: visible;
+        display: flex;
+    }
+}
+
+.gmal__list_action_popup_content {
+    min-width: 150px;
+    visibility: hidden;
+    display: none;
+    list-style: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 4px;
+    border-radius: 8px;
+    background-color: var(--background-modal);
+    box-shadow: 0px 4px 32px var(--shadow24);
+    position: absolute;
+    top: 40px;
+    right: 0;
+    z-index: 1;
+}
+
+.gmal__list_action_popup_item {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 100ms ease-in-out;
+}
+
+.gmal__list_action_popup_item > * {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gmal__list_action_popup_item:hover {
+    background-color: var(--transparent-hover);
+}
+
+.gmal__list_action_popup_item:active {
     background-color: var(--transparent-active);
 }
 
-.gmal__list_item > gmal-detail:hover:has(.gmal__list_item_action:hover) {
-    background-color: initial;
-}
