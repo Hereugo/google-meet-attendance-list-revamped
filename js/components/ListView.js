@@ -56,7 +56,6 @@ class ListView extends Modal {
                 );
     
                 const link = Utils.addChild(item, "gmal-detail", null, null, null, {"data-index": i});
-    
                 link.addEventListener("click", (e) => this.close());
 
                 Utils.addChild(link, "span", null, "gmal__list_item_title", classes[i].name);
@@ -103,12 +102,9 @@ class ListView extends Modal {
                 const classActionsContent = Utils.addChild(classActions, "ul", null, "gmal__list_action_popup_content");
 
                 const viewButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
-                const viewButton = Utils.addChild(viewButtonItem, "gmal-detail", null, null, "View");
-                viewButton.addEventListener("click", (e) => {
-                    console.log("view", i);
-
-                });
-                
+                const viewButton = Utils.addChild(viewButtonItem, "gmal-detail", null, null, "View", {"data-index": i});
+                viewButton.addEventListener("click", (e) => this.close());
+  
                 const editButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
                 const editButton = Utils.addChild(editButtonItem, "button", null, null, "Edit");
                 editButton.addEventListener("click", (e) => {

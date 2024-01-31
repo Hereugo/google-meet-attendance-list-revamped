@@ -22,6 +22,6 @@ This is a revamped version of Google Meet Attendance List. A Google Chrome exten
 
 
 ## Left off:
-I refactored some files so that they works locally with `temp.html`. Make sure that 
+- [x] I refactored some files so that they works locally with `temp.html`. Make sure that 
 classes variable is global, so that `ListView` and `DetailView` have access to it.
 

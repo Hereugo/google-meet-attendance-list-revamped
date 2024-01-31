@@ -5,8 +5,6 @@
         ".c8mVDd",
         initialize,
     );
-
-    console.log("Hello");
 })();
 
 function initialize() {
@@ -32,8 +30,6 @@ function initialize() {
 
 function populateStorage() {
     sessionStorage.setItem("participants", []);
-
-    
 }
 
 window.addEventListener("message", (event) => {
