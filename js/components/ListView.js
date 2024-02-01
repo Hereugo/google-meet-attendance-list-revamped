@@ -21,9 +21,9 @@ class ListView extends Modal {
                                 <input type="text" placeholder="Search for a class" />
                             </div>
                             <div id="gmal__list_global_actions">
-                                <button id="gmal__list_add_class">
+                                <gmal-class id="gmal__list_add_class">
                                     <i class="fal fa-lg fa-plus"></i>
-                                </button>
+                                </gmal-class>
                             </div>
                         </div>
                         <ul id="gmal__list_content">
@@ -42,8 +42,8 @@ class ListView extends Modal {
 
         // TODO: Search functionality by name
 
-        // chrome.storage.sync.get(["classes"]).then((result) => {
-        ((result) => {
+        chrome.storage.sync.get(["classes"]).then((result) => {
+        // ((result) => {
             let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
             // let classes = result.classes;
 
@@ -106,9 +106,10 @@ class ListView extends Modal {
                 viewButton.addEventListener("click", (e) => this.close());
   
                 const editButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
-                const editButton = Utils.addChild(editButtonItem, "button", null, null, "Edit");
+                const editButton = Utils.addChild(editButtonItem, "gmal-class", null, null, "Edit");
                 editButton.addEventListener("click", (e) => {
                     console.log("edit", i);
+                    this.close();
                 });
                 
                 const deleteButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
@@ -117,7 +118,7 @@ class ListView extends Modal {
                     console.log("delete", i);
                 });
             }
-        })();
+        });
     }
 
     connectedCallback() {

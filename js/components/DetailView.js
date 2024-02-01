@@ -25,12 +25,8 @@ class DetailView extends Modal {
                             </div>
                             <div id="gmal__detail_header_title">
                                 <span style="flex: 3;">Name</span>
-                                <span style="flex: 1;">Present</span>
                                 <span style="flex: 2;">Joined At</span>
-                                <span style="flex: 2;">
-                                    Duration <br/>
-                                    <sub>(HH:MM:SS)</sub>
-                                </span>
+                                <span style="flex: 1;">Present</span>
                             </div>
                         </div>
                         <ul id="gmal__detail_content">
@@ -45,20 +41,19 @@ class DetailView extends Modal {
     open() {
         // TODO: Filter functionality by name
         
-        // chrome.storage.sync.get(["classes"]).then((result) => {
-        ((result) => {
+        chrome.storage.sync.get(["classes"]).then((result) => {
+        // ((result) => {
             let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
             // let classes = result.classes;
             super.open(classes[this.classId].name);
-    
+   
             let students = classes[this.classId].students.map((studentName) => {
                 return participants.find((participant) => participant.name === studentName) || {
-                    avatar: "",
-                    name: studentName
+                    avatar: chrome.runtime.getURL("images/defaultAvatar.png"),
+                    name: studentName,
+                    joinedAt: -1,
                 };
             });
-
-            console.log(students);
 
             for (let i = 0; i < students.length; i++) {
                 const student = students[i];
@@ -88,12 +83,13 @@ class DetailView extends Modal {
                     null, "gmal__detail_item_name", student.name || "No name",
                 );
 
+                // TODO: Display real times
+                let timeDisplay = (student.joinedAt != -1) ? new Date(student.joinedAt).toLocaleTimeString() : "--:--";
+                Utils.addChild(row, "span", null, null, timeDisplay, {"style": "flex: 2;"});
+  
                 Utils.addChild(row, "i", null, `fal fa-lg ${isPresent ? "fa-check" : "fa-times"}`, null, {"style": "flex: 1;"});
-
-                Utils.addChild(row, "span", null, null, "12:00:00 PM", {"style": "flex: 2;"});
-                Utils.addChild(row, "span", null, null, "14:00:00 PM", {"style": "flex: 2;"});
             }
-        })();
+        });
     }
 
     connectedCallback() {

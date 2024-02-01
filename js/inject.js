@@ -58,6 +58,7 @@
                     'id': p[0],
                     'avatar': p[1] || '',
                     'name': p[28] || 'John Doe',
+                    'joinedAt': p[35] || Date.now(), 
                 }});
 
             let hash = res.toSorted().reduce((acc, p) => acc + p.id || '', '');

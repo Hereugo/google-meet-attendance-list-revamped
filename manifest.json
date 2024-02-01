@@ -23,7 +23,7 @@
   },
   "permissions": ["storage"],
   "web_accessible_resources": [{
-    "resources": ["js/utils.js", "js/inject.js"],
+    "resources": ["js/utils.js", "js/inject.js", "images/defaultAvatar.png"],
     "matches": ["<all_urls>"]
   }],
   "content_scripts": [
@@ -35,12 +35,14 @@
         "js/components/Modal.js",
         "js/components/ListView.js",
         "js/components/DetailView.js",
+        "js/components/ClassView.js",
         "js/templates.js",
         "js/content_script.js"
       ],
       "css": [
         "third-party/fontawesome/pro.min.css",
         "css/index.css",
+        "css/detail.css",
         "css/list.css",
         "css/box.css"
       ]

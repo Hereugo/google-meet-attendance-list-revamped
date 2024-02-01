@@ -25,14 +25,14 @@ class Modal extends HTMLElement {
             if (this.isOpen && !e.dontCloseModal) this.close();
         });
 
-        document.getElementById("popup").addEventListener("click", (e) => {
+        this.modal.querySelector("#popup").addEventListener("click", (e) => {
             e.dontCloseModal = true;
         });
 
         if (popupTitle) {
-            document.getElementById("popup__title").innerText = popupTitle;
+            this.modal.querySelector("#popup__title").innerText = popupTitle;
         }
 
-        document.getElementById("popup__close").addEventListener("click", () => this.close());
+        this.modal.querySelector("#popup__close").addEventListener("click", () => this.close());
     }
 }
