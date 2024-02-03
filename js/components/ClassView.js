@@ -21,17 +21,17 @@ class ClassView extends Modal {
                                 <input type="text" id="gmal__class_name" name="className" placeholder="Class Name"/>
                             </li>
                             <li>
-                                <tag-container id="tag_container" name="tags"></tag-container>
-                                <button id="add_all_students" type="button">
+                                <tag-container id="gmal__tag_container" name="tags"></tag-container>
+                                <button id="gmal__add_all_students" type="button">
                                     <i class="fal fa-lg fa-plus"></i>
                                     <span>Add All Current Students</span>
                                 </button>
                             </li>
                             <li style="display: flex; justify-content: flex-end; gap: 12px;">
-                                <button id="cancel">
+                                <button id="gmal__cancel">
                                     <span>Cancel</span>
                                 </button>
-                                <button id="submit" type="submit">
+                                <button id="gmal__submit" type="submit">
                                     <span>Create</span>
                                 </button>
                             </li>
@@ -45,16 +45,37 @@ class ClassView extends Modal {
 
     open() {
         super.open();
-        
-        // TODO: Add all Current Students to class
-        document.getElementById("add_all_students").addEventListener("click", (e) => {
-            console.log("Adding all current students to class...");
+
+        // Import data from class (if exists)
+        chrome.storage.sync.get(["classes"]).then((result) => {
+            let classRes = result.classes[this.classId] || {name: "", students: []};    
+            document.getElementById("gmal__class_name").value = classRes.name;
+            document.getElementById("gmal__tag_container").addTags(classRes.students);
         });
 
-        document.getElementById("cancel").addEventListener("click", (e) => this.close());
-        document.getElementById("submit").addEventListener("click", (e) => {
-            // TODO: Implement new class
-            console.log("Creating new class...");
+        document.getElementById("gmal__add_all_students").addEventListener("click", (_e) => {
+            let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
+            
+            document.getElementById("gmal__tag_container").addTags(participants.map(participant => participant.name));
+        });
+
+        document.getElementById("gmal__cancel").addEventListener("click", (_e) => this.close());
+        document.getElementById("gmal__submit").addEventListener("click", (_e) => {
+            let students = document.getElementById("gmal__tag_container").tags || [];
+            let name = document.getElementById("gmal__class_name").value || "";
+
+            chrome.storage.sync.get(["classes"]).then((result) => {
+                let newClasses = result.classes || [];
+                let newClass = { name, students };
+
+                if (this.classId) {
+                    newClasses[this.classId] = newClass;
+                } else {
+                    newClasses.push(newClass);
+                }
+
+                chrome.storage.sync.set({ classes: newClasses });
+            });
 
             this.close();
         });
@@ -64,6 +85,8 @@ class ClassView extends Modal {
         if (!document.getElementById("gmal__class")) {
             this.injectTemplate();
         }
+
+        this.classId = this.dataset.index || null;
 
         this.addEventListener("click", (e) => {
             if (this.isOpen) {

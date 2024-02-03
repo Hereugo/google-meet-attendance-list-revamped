@@ -7,7 +7,7 @@ class TagContainer extends HTMLElement {
     }
 
     clear() {
-        let tags = this.querySelectorAll('.tag');
+        let tags = this.querySelectorAll('.gmal__tag');
         for (let i = 0; i < tags.length; i++) {
             this.removeChild(tags[i]);
         }
@@ -17,7 +17,7 @@ class TagContainer extends HTMLElement {
         this.clear();
 
         this.tags.toReversed().forEach((tagName, i) => {
-            const tag = Utils.createElement("div", null, "tag");
+            const tag = Utils.createElement("div", null, "gmal__tag");
             
             Utils.addChild(tag, "span", null, null, tagName || "empty"); 
             Utils.addChild(tag, "i", null, "far fa-fw fa-times-circle");
@@ -35,28 +35,31 @@ class TagContainer extends HTMLElement {
         });
     }
 
-    addTags(e) {
+    addTags(tagNames) {
+        this.tags = [...this.tags, ...tagNames];
+        this.update();
+    }
+
+    addTagsInput(e) {
         e.stopPropagation();
 
         if (e.key !== 'Enter') {
             return;
         }
 
-        let tagNames = e.target.value.split(',');
-        this.tags = [...this.tags, ...tagNames];
-        this.update();
+        this.addTags(e.target.value.split(','));
 
         this.input.value = "";
         return;
     }
 
-    setFocus(e) {
+    setFocus(_e) {
         this.input.focus();
     }
 
     connectedCallback() {
         this.input = Utils.createElement("input", null, null, null, null, { type: "text", placeholder: "Enter names" });
-        this.input.addEventListener("keyup", this.addTags.bind(this));
+        this.input.addEventListener("keyup", this.addTagsInput.bind(this));
 
         this.clear();
         this.appendChild(this.input);

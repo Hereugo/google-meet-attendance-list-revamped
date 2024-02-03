@@ -46,7 +46,7 @@ class ListView extends Modal {
         chrome.storage.sync.get(["classes"]).then((result) => {
         // ((result) => {
             let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
-            // let classes = result.classes;
+            let classes = result.classes;
 
             for (let i = 0; i < classes.length; i++) {
                 const item = Utils.addChild(
@@ -54,10 +54,12 @@ class ListView extends Modal {
                     "li",
                     null,
                     "gmal__list_item",
+                    null,
+                    {"data-index": i}
                 );
     
                 const link = Utils.addChild(item, "gmal-detail", null, null, null, {"data-index": i});
-                link.addEventListener("click", (e) => this.close());
+                link.addEventListener("click", (_e) => this.close());
 
                 Utils.addChild(link, "span", null, "gmal__list_item_title", classes[i].name);
 
@@ -65,10 +67,14 @@ class ListView extends Modal {
     
                 const classProfiles = Utils.addChild(classDetails, "div", null, "gmal__list_item_profiles");
 
-                const present = participants.filter((participant) => {
-                    return classes[i].students.includes(participant.name); // TODO: make lower case and remove spaces from names, and then compare
-                });
-        
+                let present = classes[i].students.map((studentName) => {
+                    return participants.find((participant) => participant.name === studentName) || {
+                        avatar: chrome.runtime.getURL("images/defaultAvatar.png"),
+                        name: studentName,
+                        joinedAt: -1,
+                    };
+                }).filter((student) => student.joinedAt != -1);
+
                 if (present.length <= 3) {
                     for (let j = 0; j < present.length; j++) {
                         Utils.addChild(
@@ -104,20 +110,26 @@ class ListView extends Modal {
 
                 const viewButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
                 const viewButton = Utils.addChild(viewButtonItem, "gmal-detail", null, null, "View", {"data-index": i});
-                viewButton.addEventListener("click", (e) => this.close());
+                viewButton.addEventListener("click", (_e) => this.close());
   
                 const editButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
-                const editButton = Utils.addChild(editButtonItem, "gmal-class", null, null, "Edit");
-                editButton.addEventListener("click", (e) => {
-                    // TODO: Open edit modal with class details filled in
-                    console.log("edit", i);
-                    this.close();
-                });
-                
+                const editButton = Utils.addChild(editButtonItem, "gmal-class", null, null, "Edit", {"data-index": i});
+                editButton.addEventListener("click", (_e) => this.close());
+    
                 const deleteButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
                 const deleteButton = Utils.addChild(deleteButtonItem, "button", null, null, "Delete");
                 deleteButton.addEventListener("click", (e) => {
-                    console.log("delete", i);
+                    chrome.storage.sync.get(["classes"]).then((result) => {
+                        let newClasses = result.classes || [];
+
+                        newClasses = [...newClasses.slice(0, i), ...newClasses.slice(i + 1)];
+
+                        chrome.storage.sync.set({classes: newClasses});
+                    });
+                    
+                    document.getElementById("gmal__list_content").removeChild(item);
+                    
+                    e.stopPropagation();
                 });
             }
         });

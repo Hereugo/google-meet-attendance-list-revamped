@@ -37,7 +37,7 @@
     color: var(--text-secondary);
 }
 
-#tag_container {
+#gmal__tag_container {
     border: 1px solid var(--border);
     border-radius: 4px 4px 0 0;
     background-color: var(--background-modal);
@@ -61,7 +61,7 @@
     padding: 8px;
 }
 
-#tag_container > input[type="text"] {
+#gmal__tag_container > input[type="text"] {
     all: unset;
     line-height: 20px;
     font-size: 15px;
@@ -78,7 +78,7 @@
     }
 }
 
-.tag {
+.gmal__tag {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -90,15 +90,15 @@
     cursor: pointer;
 }
 
-.tag:hover {
+.gmal__tag:hover {
     background-color: var(--transparent-hover);
 }
 
-.tag:active {
+.gmal__tag:active {
     background-color: var(--transparent-active);
 }
 
-#add_all_students {
+#gmal__add_all_students {
     width: 100%;
     height: 48px;
     padding: 0 8px;
@@ -118,14 +118,14 @@
     justify-content: center;
     gap: 8px;
 }
-#add_all_students:hover {
+#gmal__add_all_students:hover {
     background-color: var(--transparent-hover);
 }
-#add_all_students:active {
+#gmal__add_all_students:active {
     background-color: var(--transparent-active);
 }
 
-#cancel, #submit {
+#gmal__cancel, #gmal__submit {
     width: auto;
     height: 48px;
     padding: 0 8px;
@@ -147,11 +147,11 @@
     cursor: pointer;
 }
 
-#cancel:hover, #submit:hover {
+#gmal__cancel:hover, #gmal__submit:hover {
     background-color: var(--transparent-hover);
 }
 
-#cancel:active, #submit:active {
+#gmal__cancel:active, #gmal__submit:active {
     background-color: var(--transparent-active);
 }
 

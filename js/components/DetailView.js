@@ -39,12 +39,10 @@ class DetailView extends Modal {
     }
 
     open() {
-        // TODO: Filter functionality by name
-        
+        // TODO: Filter functionality by name        
         chrome.storage.sync.get(["classes"]).then((result) => {
-        // ((result) => {
             let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
-            // let classes = result.classes;
+            let classes = result.classes;
             super.open(classes[this.classId].name);
    
             let students = classes[this.classId].students.map((studentName) => {
@@ -83,7 +81,6 @@ class DetailView extends Modal {
                     null, "gmal__detail_item_name", student.name || "No name",
                 );
 
-                // TODO: Display real times
                 let timeDisplay = (student.joinedAt != -1) ? new Date(student.joinedAt).toLocaleTimeString() : "--:--";
                 Utils.addChild(row, "span", null, null, timeDisplay, {"style": "flex: 2;"});
   
