@@ -16,6 +16,26 @@ class ClassView extends Modal {
                         </button>
                     </div>
                     <div id="popup__content">
+                        <ul id="gmal__class_content">
+                            <li>
+                                <input type="text" id="gmal__class_name" name="className" placeholder="Class Name"/>
+                            </li>
+                            <li>
+                                <tag-container id="tag_container" name="tags"></tag-container>
+                                <button id="add_all_students" type="button">
+                                    <i class="fal fa-lg fa-plus"></i>
+                                    <span>Add All Current Students</span>
+                                </button>
+                            </li>
+                            <li style="display: flex; justify-content: flex-end; gap: 12px;">
+                                <button id="cancel">
+                                    <span>Cancel</span>
+                                </button>
+                                <button id="submit" type="submit">
+                                    <span>Create</span>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -25,8 +45,19 @@ class ClassView extends Modal {
 
     open() {
         super.open();
+        
+        // TODO: Add all Current Students to class
+        document.getElementById("add_all_students").addEventListener("click", (e) => {
+            console.log("Adding all current students to class...");
+        });
 
-        // TODO: Implement new class
+        document.getElementById("cancel").addEventListener("click", (e) => this.close());
+        document.getElementById("submit").addEventListener("click", (e) => {
+            // TODO: Implement new class
+            console.log("Creating new class...");
+
+            this.close();
+        });
     }
 
     connectedCallback() {

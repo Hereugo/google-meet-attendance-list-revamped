@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Test new class</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="third-party/fontawesome/pro.min.css"/>
+        <link rel="stylesheet" href="css/index.css"/>
+        <link rel="stylesheet" href="css/class.css"/>
+        <link rel="stylesheet" href="css/box.css"/>
+    </head>
+    <body>
+        <template id="gmal__class">
+            <div id="gmal__class_modal" class="modal__background">
+                <div id="popup" class="gmal__class_popup">
+                    <div id="popup__header">
+                        <h2 id="popup__title">New Class</h2>
+                        <button id="popup__close">
+                            <i class="fal fa-lg fa-times"></i>
+                        </button>
+                    </div>
+                    <div id="popup__content">
+                        <form id="gmal__class_form">
+                            <ul id="gmal__class_content">
+                                <li>
+                                    <!-- <label for="gmal__class_name">Class name:</label> -->
+                                    <input type="text" id="gmal__class_name" name="className" placeholder="Class Name"/>
+                                </li>
+                                <li>
+                                    <!-- <label for="tag_container">Student names:</label> -->
+                                    <tag-container id="tag_container" name="tags"></tag-container>
+                                    <button id="add_all_students" type="button">
+                                        <i class="fal fa-lg fa-plus"></i>
+                                        <span>Add All Current Students</span>
+                                    </button>
+                                </li>
+                                <li style="display: flex; justify-content: flex-end; gap: 12px;">
+                                    <button id="cancel">
+                                        <span>Cancel</span>
+                                    </button>
+                                    <button id="submit" type="submit">
+                                        <span>Create</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <div id="gmal__app"></div>
+
+        <image src="https://picsum.photos/200/300" alt="random image" />
+
+        <gmal-class>
+            Button Class    
+        </gmal-class>
+    </body>
+    <script src="js/utils.js"></script>
+    <script src="js/components/Modal.js"></script>
+    <script src="js/components/TagContainer.js"></script>
+    <script src="js/components/ClassView.js"></script>
+</html>

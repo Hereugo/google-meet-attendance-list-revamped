@@ -33,6 +33,7 @@
         "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
         "js/utils.js",
         "js/components/Modal.js",
+        "js/components/TagContainer.js",
         "js/components/ListView.js",
         "js/components/DetailView.js",
         "js/components/ClassView.js",
@@ -42,6 +43,7 @@
       "css": [
         "third-party/fontawesome/pro.min.css",
         "css/index.css",
+        "css/class.css",
         "css/detail.css",
         "css/list.css",
         "css/box.css"

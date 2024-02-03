@@ -38,7 +38,8 @@ class ListView extends Modal {
     open() {
         super.open();
 
-
+        // On pressing new class, close previous modal.
+        document.getElementById("gmal__list_add_class").addEventListener("click", () => this.close());
 
         // TODO: Search functionality by name
 
@@ -108,6 +109,7 @@ class ListView extends Modal {
                 const editButtonItem = Utils.addChild(classActionsContent, "li", null, "gmal__list_action_popup_item");
                 const editButton = Utils.addChild(editButtonItem, "gmal-class", null, null, "Edit");
                 editButton.addEventListener("click", (e) => {
+                    // TODO: Open edit modal with class details filled in
                     console.log("edit", i);
                     this.close();
                 });

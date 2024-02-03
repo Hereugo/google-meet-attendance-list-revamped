@@ -21,8 +21,11 @@ This is a revamped version of Google Meet Attendance List. A Google Chrome exten
 
 ## Left off:
 - [ ] Feat: Search functionality for modals.
+- [ ] Imp: Add all current students to a class functionality.
+- [ ] Generate a new class functionality.
+- [ ] Imp: Edit class functionality.
+- [ ] Imp: Delete class functionality.
 - [ ] Imp: Native UI for view button in Google Meet.
 - [ ] Imp: Display "No classes"/"No participants" in modals.
-- [ ] Imp: Creating new class functionality
 - [ ] Imp: Export class button
 - [ ] Imp: Demo page
