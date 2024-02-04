@@ -20,7 +20,7 @@ This is a revamped version of Google Meet Attendance List. A Google Chrome exten
   - [x] Modal popup, where user can select a class and see the list of people present in that class.
 
 ## Left off:
-- [ ] Feat: Search functionality for modals.
+- [x] Feat: Search functionality for modals.
 - [x] Imp: Native UI for view button in Google Meet.
 - [-] Imp: Display "No classes"/"No participants" in modals.
 - [x] Imp: Export class button

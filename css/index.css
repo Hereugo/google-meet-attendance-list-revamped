@@ -30,6 +30,10 @@
     box-sizing: border-box;
 }
 
+*[data-gmal_hidden="true"] {
+    display: none !important;
+}
+
 .modal__background {
     position: fixed;
     display: flex;

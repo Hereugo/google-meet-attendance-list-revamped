@@ -59,6 +59,18 @@ class DetailView extends Modal {
                 };
             });
 
+            
+            document.querySelector("#gmal__detail_search > input").addEventListener("keyup", (e) => {
+                let value = e.target.value;
+                
+                for (let i = 0; i < students.length; i++) {
+                    const item = document.querySelector(`.gmal__detail_item[data-index="${i}"]`);
+                    const pattern = new RegExp(value, "gi");
+
+                    item.dataset.gmal_hidden = !(pattern.test(students[i].name));
+                }
+            });
+
             for (let i = 0; i < students.length; i++) {
                 const student = students[i];
                 let isPresent = participants.some((participant) => participant.name === student.name);
@@ -69,7 +81,7 @@ class DetailView extends Modal {
                     null,
                     "gmal__detail_item",
                     null,
-                    {"data-present": isPresent}
+                    {"data-present": isPresent, "data-index": i}
                 );
 
                 const row = Utils.addChild(item, "div", null, "gmal__detail_item_row");
@@ -95,10 +107,12 @@ class DetailView extends Modal {
 
             document.getElementById("gmal__export").addEventListener("click", (_e) => {
                 console.log("Exporting class");
-                
+            
                 let csvArr = Utils.arrayToCSV([
                     ["Names", "Joined At", "Was Present?"],
-                    ...students.map((student) => [
+                    ...students
+                    // .filter((student, index) => !(document.querySelector(`.gmal__detail_item[data-index="${index}"]`).dataset.gmal_hidden || false))
+                    .map((student) => [
                         student.name,
                         (student.joinedAt != -1) ? new Date(student.joinedAt).toLocaleString() : "--:--:--",
                         participants.some((participant) => participant.name === student.name)

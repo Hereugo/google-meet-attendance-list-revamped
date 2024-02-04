@@ -41,13 +41,20 @@ class ListView extends Modal {
         // On pressing new class, close previous modal.
         document.getElementById("gmal__list_add_class").addEventListener("click", () => this.close());
 
-        // TODO: Search functionality by class name
-
-
         chrome.storage.sync.get(["classes"]).then((result) => {
-        // ((result) => {
             let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
             let classes = result.classes;
+
+            document.querySelector("#gmal__list_search > input").addEventListener("keyup", (e) => {
+                let value = e.target.value;
+                
+                for (let i = 0; i < classes.length; i++) {
+                    const item = document.querySelector(`.gmal__list_item[data-index="${i}"]`);
+                    const pattern = new RegExp(value, "gi");
+
+                    item.dataset.gmal_hidden = !(pattern.test(classes[i].name));
+                }
+            });
 
             for (let i = 0; i < classes.length; i++) {
                 const item = Utils.addChild(
