@@ -41,7 +41,8 @@ class ListView extends Modal {
         // On pressing new class, close previous modal.
         document.getElementById("gmal__list_add_class").addEventListener("click", () => this.close());
 
-        // TODO: Search functionality by name
+        // TODO: Search functionality by class name
+
 
         chrome.storage.sync.get(["classes"]).then((result) => {
         // ((result) => {
@@ -141,10 +142,21 @@ class ListView extends Modal {
         }
 
         // TODO: Instead of regular button, make it look better.
-        const btn = Utils.createElement("button", null, null, "List View");
-        this.appendChild(btn);
+        this.insertAdjacentHTML('afterbegin', `
+            <div id="gmal__list_button" class="r6xAKc">
+                <span data-is-tooltip-wrapper="true">
+                    <button class="VfPpkd-Bz112c-LgbsSe yHy1rc eT1oJ JsuyRc boDUxc" jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc; touchcancel:JMtRjd; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;mlnRJb:fLiPzd" jsname="A5il2e" data-disable-idom="true" aria-label="Информация о встрече" data-tooltip-enabled="true" data-tooltip-id="tt-c10" aria-pressed="false" style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.71429; --mdc-ripple-left:10px; --mdc-ripple-top:10px;">
+                        <div jsname="s3Eaab" class="VfPpkd-Bz112c-Jh9lGc"></div>
+                        <div class="VfPpkd-Bz112c-J1Ukfc-LhBDec"></div>
+                        <i class="google-material-icons VfPpkd-kBDsod NtU4hc" aria-hidden="true">history_edu</i>
+                        <i class="google-material-icons VfPpkd-kBDsod Mwv9k" aria-hidden="true">history_edu</i>
+                    </button>
+                    <div class="EY8ABd-OWXEXe-TAWMXe" role="tooltip" aria-hidden="true" id="tt-c10"></div>
+                </span>
+            </div>
+        `);
 
-        btn.addEventListener("click", (e) => {
+        document.getElementById("gmal__list_button").addEventListener("click", (e) => {
             if (this.isOpen) {
                 this.close();
             } else {

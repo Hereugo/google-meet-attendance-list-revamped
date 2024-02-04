@@ -81,4 +81,32 @@ class Utils {
             ...options
         });
     }
+
+    /** Array to CSV 
+    * Source: https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+    */
+    static arrayToCSV(arr) {
+        return arr.map((row) =>
+            row
+            .map(String)  // Convert every value to a string
+            .map(v => v.replaceAll('"', '""'))  // escape double quotes
+            .map(v => `"${v}"`)  // quote it
+            .join(",")  // comma-seperated
+        ).join("\r\n");  // row starting on new lines
+    }
+    
+    /** Download contents as a file
+    * Source: https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+    */
+    static downloadBlob(content, filename, contentType) {
+        // Create a blob
+        var blob = new Blob([content], { type: contentType });
+        var url = URL.createObjectURL(blob);
+        
+        // Create a link to download it
+        var pom = document.createElement('a');
+        pom.href = url;
+        pom.setAttribute('download', filename);
+        pom.click();
+    }
 }

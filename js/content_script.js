@@ -19,7 +19,7 @@ var classes = [
         students: []
     }
 ];
-
+ 
 // Entry point
 (async () => {
     Utils.onReady(

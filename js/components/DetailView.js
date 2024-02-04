@@ -31,6 +31,12 @@ class DetailView extends Modal {
                         </div>
                         <ul id="gmal__detail_content">
                         </ul>
+                        <div id="gmal__detail_footer">
+                            <button id="gmal__export">
+                                <i class="fal fa-lg fa-file-download"></i>
+                                <span>Export as CSV</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,11 +87,32 @@ class DetailView extends Modal {
                     null, "gmal__detail_item_name", student.name || "No name",
                 );
 
-                let timeDisplay = (student.joinedAt != -1) ? new Date(student.joinedAt).toLocaleTimeString() : "--:--";
+                let timeDisplay = (student.joinedAt != -1) ? new Date(student.joinedAt).toLocaleTimeString() : "--:--:--";
                 Utils.addChild(row, "span", null, null, timeDisplay, {"style": "flex: 2;"});
   
                 Utils.addChild(row, "i", null, `fal fa-lg ${isPresent ? "fa-check" : "fa-times"}`, null, {"style": "flex: 1;"});
             }
+
+            document.getElementById("gmal__export").addEventListener("click", (_e) => {
+                console.log("Exporting class");
+                
+                let csvArr = Utils.arrayToCSV([
+                    ["Names", "Joined At", "Was Present?"],
+                    ...students.map((student) => [
+                        student.name,
+                        (student.joinedAt != -1) ? new Date(student.joinedAt).toLocaleString() : "--:--:--",
+                        participants.some((participant) => participant.name === student.name)
+                    ])
+                ]);
+
+                console.log(csvArr);
+
+                Utils.downloadBlob(
+                    csvArr,
+                    `${classes[this.classId].name}_${new Date(Date.now()).toLocaleString()}`,
+                    'text/csv;charset=utf-8;'
+                )
+            });
         });
     }
 
