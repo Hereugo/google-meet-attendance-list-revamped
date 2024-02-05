@@ -4,14 +4,13 @@ class ClassView extends Modal {
     }
 
     injectTemplate() {
-        // TODO: Implement new html for creating a class
         document.body.insertAdjacentHTML('beforebegin', `
         <template id="gmal__class">
             <div id="gmal__class_modal" class="modal__background">
                 <div id="popup" class="gmal__class_popup">
                     <div id="popup__header">
                         <h2 id="popup__title">New Class</h2>
-                        <button id="popup__close">
+                        <button id="popup__close" title="Close">
                             <i class="fal fa-lg fa-times"></i>
                         </button>
                     </div>
@@ -28,10 +27,10 @@ class ClassView extends Modal {
                                 </button>
                             </li>
                             <li style="display: flex; justify-content: flex-end; gap: 12px;">
-                                <button id="gmal__cancel">
+                                <button id="gmal__cancel" title="Cancel">
                                     <span>Cancel</span>
                                 </button>
-                                <button id="gmal__submit" type="submit">
+                                <button id="gmal__submit" type="submit" title="Create New Class">
                                     <span>Create</span>
                                 </button>
                             </li>

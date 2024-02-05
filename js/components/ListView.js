@@ -4,14 +4,13 @@ class ListView extends Modal {
     }
 
     injectTemplate() {
-        // TODO: Add custom html if empty class
         document.body.insertAdjacentHTML('beforebegin', `
         <template id="gmal__list">
             <div id="gmal__list_modal" class="modal__background">
                 <div id="popup" class="gmal__list_popup">
                     <div id="popup__header">
                         <h2 id="popup__title">Available Classes</h2>
-                        <button id="popup__close">
+                        <button id="popup__close" title="Close">
                             <i class="fal fa-lg fa-times"></i>
                         </button>
                     </div>
@@ -21,7 +20,7 @@ class ListView extends Modal {
                                 <input type="text" placeholder="Search for a class" />
                             </div>
                             <div id="gmal__list_global_actions">
-                                <gmal-class id="gmal__list_add_class">
+                                <gmal-class id="gmal__list_add_class" title="Add New Class">
                                     <i class="fal fa-lg fa-plus"></i>
                                 </gmal-class>
                             </div>
@@ -109,7 +108,7 @@ class ListView extends Modal {
 
                 const classActions = Utils.addChild(link, "div", null, "gmal__list_action_popup");
 
-                const classActionsButton = Utils.addChild(classActions, "label", null, "gmal__list_action_popup_button");
+                const classActionsButton = Utils.addChild(classActions, "label", null, "gmal__list_action_popup_button", null, {"title": "Actions"});
                 Utils.addChild(classActionsButton, "i", null, "far fa-ellipsis-h");
                 Utils.addChild(classActionsButton, "input", null, null, null, {"type": "checkbox", "style": "display: none;"});
                 classActionsButton.addEventListener("click", (e) => e.stopPropagation()); // Prevents detail view from opening
@@ -136,8 +135,9 @@ class ListView extends Modal {
                     });
                     
                     document.getElementById("gmal__list_content").removeChild(item);
-                    
+
                     e.stopPropagation();
+                    this.close();
                 });
             }
         });
@@ -148,7 +148,6 @@ class ListView extends Modal {
             this.injectTemplate();
         }
 
-        // TODO: Instead of regular button, make it look better.
         this.insertAdjacentHTML('afterbegin', `
             <div id="gmal__list_button" class="r6xAKc">
                 <span data-is-tooltip-wrapper="true">

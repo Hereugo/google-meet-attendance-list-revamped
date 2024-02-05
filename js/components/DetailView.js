@@ -6,7 +6,6 @@ class DetailView extends Modal {
     }
 
     injectTemplate() {
-        // TODO: Add buttons for exporting the list of participants
         // Custom html if empty class
         document.body.insertAdjacentHTML('beforebegin', `
         <template id="gmal__detail">
@@ -14,7 +13,7 @@ class DetailView extends Modal {
                 <div id="popup" class="gmal__detail_popup">
                     <div id="popup__header">
                         <h2 id="popup__title">Class Details</h2>
-                        <button id="popup__close">
+                        <button id="popup__close" title="Close">
                             <i class="fal fa-lg fa-times"></i>
                         </button>
                     </div>
@@ -45,7 +44,6 @@ class DetailView extends Modal {
     }
 
     open() {
-        // TODO: Filter functionality by name        
         chrome.storage.sync.get(["classes"]).then((result) => {
             let participants = JSON.parse(sessionStorage.getItem("participants")) || [];
             let classes = result.classes;
